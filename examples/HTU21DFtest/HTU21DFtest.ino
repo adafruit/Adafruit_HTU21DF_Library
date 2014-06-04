@@ -8,7 +8,7 @@
   interface
  ****************************************************/
 
-include <Wire.h>
+#include <Wire.h>
 #include "Adafruit_HTU21DF.h"
 
 // Connect Vin to 3-5VDC
@@ -22,12 +22,15 @@ void setup() {
   Serial.begin(9600);
   Serial.println("HTU21D-F test");
 
-  htu.begin();
+  if (!htu.begin()) {
+    Serial.println("Couldn't find sensor!");
+    while (1);
+  }
 }
 
 
 void loop() {
-  Serial.print("Temp: "); Serial.println(htu.readTemperature());
-  Serial.print("Hum: "); Serial.println(htu.readHumidity());
+  Serial.print("Temp: "); Serial.print(htu.readTemperature());
+  Serial.print("\t\tHum: "); Serial.println(htu.readHumidity());
   delay(500);
 }
