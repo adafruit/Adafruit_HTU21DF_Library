@@ -15,7 +15,9 @@
  ****************************************************/
 
 #include "Adafruit_HTU21DF.h"
+#if defined(__AVR__)
 #include <util/delay.h>
+#endif
 
 Adafruit_HTU21DF::Adafruit_HTU21DF() {
 }
