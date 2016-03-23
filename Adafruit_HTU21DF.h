@@ -39,6 +39,5 @@ class Adafruit_HTU21DF {
   void reset(void);
  private:
   boolean readData(void);
-  float humidity, temp;
 };
 
