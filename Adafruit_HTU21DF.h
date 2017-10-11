@@ -40,9 +40,6 @@ class Adafruit_HTU21DF {
   float readTemperature(void);
   float readHumidity(void);
   void reset(void);
- private:
-  boolean readData(void);
-  float humidity, temp;
 };
 
 #endif
