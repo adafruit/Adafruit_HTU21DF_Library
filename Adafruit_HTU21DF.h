@@ -14,6 +14,9 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+#ifndef _ADAFRUIT_HTU21DF_H
+#define _ADAFRUIT_HTU21DF_H
+
 #if (ARDUINO >= 100)
  #include "Arduino.h"
 #else
@@ -42,3 +45,4 @@ class Adafruit_HTU21DF {
   float humidity, temp;
 };
 
+#endif
