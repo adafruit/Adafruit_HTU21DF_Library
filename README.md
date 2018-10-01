@@ -1,5 +1,7 @@
 # Adafruit HTU21D-F Humidity + Temperature Sensor for Arduino [![Build Status](https://travis-ci.org/adafruit/Adafruit_HTU21DF_Library.svg?branch=master)](https://travis-ci.org/adafruit/Adafruit_HTU21DF_Library)
 
+> [API Documentation](http://adafruit.github.io/Adafruit_HTU21DF_Library/html/class_adafruit___h_t_u21_d_f.html)
+
 This is a library for the HTU21D-F Humidity + Temp sensor.
 
 Designed specifically to work with the HTU21D-F in the Adafruit shop
