@@ -5,7 +5,8 @@
 This is a library for the HTU21D-F Humidity + Temperature sensor.
 
 Designed specifically to work with the HTU21D-F in the Adafruit shop:
-  ----> https://www.adafruit.com/products/1899
+
+- https://www.adafruit.com/products/1899
 
 These boards use **I2C** to communicate. 2 pins are required to interface.
 Adafruit invests time and resources providing this open source code,
