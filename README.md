@@ -42,4 +42,4 @@ For a practical guide on how to use this breakout, see our comprehensive [Adafru
 
 For specific programming issues, see the [API Documentation](http://adafruit.github.io/Adafruit_HTU21DF_Library/html/class_adafruit___h_t_u21_d_f.html) describing the `Adafruit_HTU21DF` class available in this library.
 
-> This documentation is based on the comments present in the code, and is automatically generated whenever the code is updated.
+> This documentation is automatically generated based on the doxygen comments in the code.
