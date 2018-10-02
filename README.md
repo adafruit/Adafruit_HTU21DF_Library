@@ -19,9 +19,9 @@ BSD license, all text above must be included in any redistribution.
 
 Check out the links above for our tutorials and wiring diagrams.
 
-To download. click the **DOWNLOAD ZIP** button, and rename the uncompressed folder
-`Adafruit_HTU21DF`.  Check that the `Adafruit_BHTU21DF` folder contains the following
-file:
+To download. click the **DOWNLOAD ZIP** button (under **Clone or Download**, and rename
+the uncompressed folder `Adafruit_HTU21DF`.  Check that the `Adafruit_HTU21DF` folder
+contains the following files:
 
 - `Adafruit_HT212DF.cpp`
 - `Adafruit_HT21UDF.h`
