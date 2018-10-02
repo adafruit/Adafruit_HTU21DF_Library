@@ -40,6 +40,6 @@ For a practical guide on how to use this breakout, see our comprehensive [Adafru
 
 ### API Documentation
 
-For specific programming issues, see the [API Documentation](http://adafruit.github.io/Adafruit_HTU21DF_Library/html/class_adafruit___h_t_u21_d_f.html) describing the `Adafruit_HTU21DF` class available in this library.
+> **NOTE:** This documentation is automatically generated based on the doxygen comments in the code.
 
-> This documentation is automatically generated based on the doxygen comments in the code.
+For specific programming issues, see the [API Documentation](http://adafruit.github.io/Adafruit_HTU21DF_Library/html/class_adafruit___h_t_u21_d_f.html) describing the `Adafruit_HTU21DF` class available in this library.
