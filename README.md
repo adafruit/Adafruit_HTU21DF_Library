@@ -18,17 +18,7 @@ BSD license, all text above must be included in any redistribution.
 
 ## Installing this Library
 
-Check out the links above for our tutorials and wiring diagrams.
-
-To download. click the **DOWNLOAD ZIP** button (under **Clone or Download**, and rename
-the uncompressed folder `Adafruit_HTU21DF`.  Check that the `Adafruit_HTU21DF` folder
-contains the following files:
-
-- `Adafruit_HT212DF.cpp`
-- `Adafruit_HT21UDF.h`
-
-Place the `Adafruit_HT21UDF` library folder in your `arduinosketchfolder/libraries/` folder. 
-You may need to create the libraries subfolder if its your first library. Restart the IDE.
+Check out the links above for our tutorials and wiring diagrams. Use the Arduino library manager to install
 
 We also have a great tutorial on Arduino library installation at:
 http://learn.adafruit.com/adafruit-all-about-arduino-libraries-install-use
