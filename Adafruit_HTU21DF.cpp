@@ -46,7 +46,10 @@ boolean Adafruit_HTU21DF::begin(void)
     Wire.write(HTU21DF_READREG);
     Wire.endTransmission();
     Wire.requestFrom(HTU21DF_I2CADDR, 1);
-    return (Wire.read() == 0x2); // after reset should be 0x2
+	uint8_t result = Wire.read();
+	// after reset the result should be 0x2 for HTU21DF 
+	// or 0x3A for Si7021, which is compatible for temp and humidity readings 
+    return (result == 0x2) || (result == 0x3A); 
 }
 
 /**
