@@ -1,4 +1,4 @@
-# Adafruit HTU21D-F Humidity/Temp Sensor for Arduino [![Build Status](https://github.com/adafruit/Adafruit_HTU21DF_Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_HTU21DF_Library/actions)
+# Adafruit HTU21D-F Humidity/Temp Sensor for Arduino [![Build Status](https://github.com/adafruit/Adafruit_HTU21DF_Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_HTU21DF_Library/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit_HTU21DF_Library/html/index.html)
 
 ![sensors_1899-00](https://user-images.githubusercontent.com/181073/46350691-b53d1880-c655-11e8-8415-452aec129b44.jpg)
 
