@@ -27,10 +27,6 @@
 
 #include "Adafruit_HTU21DF.h"
 
-#if defined(__AVR__)
-#include <util/delay.h>
-#endif
-
 /**
  * Constructor for the HTU21DF driver.
  */
@@ -42,29 +38,35 @@ Adafruit_HTU21DF::Adafruit_HTU21DF() {
 
 /**
  * Initialises the I2C transport, and configures the IC for normal operation.
- *
+ * @param theWire Pointer to TwoWire I2C object, uses &Wire by default
  * @return true (1) if the device was successfully initialised, otherwise
  *         false (0).
  */
-boolean Adafruit_HTU21DF::begin(void) {
-  Wire.begin();
+bool Adafruit_HTU21DF::begin(TwoWire *theWire) {
+  if (i2c_dev) {
+    delete i2c_dev;
+  }
+  i2c_dev = new Adafruit_I2CDevice(HTU21DF_I2CADDR, theWire);
+
+  if (!i2c_dev->begin()) {
+    return false;
+  }
 
   reset();
 
-  Wire.beginTransmission(HTU21DF_I2CADDR);
-  Wire.write(HTU21DF_READREG);
-  Wire.endTransmission();
-  Wire.requestFrom(HTU21DF_I2CADDR, 1);
-  return (Wire.read() == 0x2); // after reset should be 0x2
+  Adafruit_BusIO_Register reg =
+      Adafruit_BusIO_Register(i2c_dev, HTU21DF_READREG);
+
+  return (reg.read() == 0x2); // after reset should be 0x2
 }
 
 /**
  * Sends a 'reset' request to the HTU21DF, followed by a 15ms delay.
  */
 void Adafruit_HTU21DF::reset(void) {
-  Wire.beginTransmission(HTU21DF_I2CADDR);
-  Wire.write(HTU21DF_RESET);
-  Wire.endTransmission();
+  uint8_t cmd = HTU21DF_RESET;
+  i2c_dev->write(&cmd, 1);
+
   delay(15);
 }
 
@@ -72,30 +74,28 @@ void Adafruit_HTU21DF::reset(void) {
  * Performs a single temperature conversion in degrees Celsius.
  *
  * @return a single-precision (32-bit) float value indicating the measured
- *         temperature in degrees Celsius.
+ *         temperature in degrees Celsius or NAN on failure.
  */
 float Adafruit_HTU21DF::readTemperature(void) {
   // OK lets ready!
-  Wire.beginTransmission(HTU21DF_I2CADDR);
-  Wire.write(HTU21DF_READTEMP);
-  Wire.endTransmission();
+  uint8_t cmd = HTU21DF_READTEMP;
+  if (!i2c_dev->write(&cmd, 1)) {
+    return NAN;
+  }
 
   delay(50); // add delay between request and actual read!
 
-  uint8_t count = Wire.requestFrom(HTU21DF_I2CADDR, 3);
-
-  /* Make sure we got 3 bytes back. */
-  if (count != 3) {
-    return 0.0f;
+  uint8_t buf[3];
+  if (!i2c_dev->read(buf, 3)) {
+    return NAN;
   }
 
   /* Read 16 bits of data, dropping the last two status bits. */
-  uint16_t t = Wire.read();
+  uint16_t t = buf[0];
   t <<= 8;
-  t |= Wire.read() & 0b11111100;
+  t |= buf[1] & 0b11111100;
 
-  uint8_t crc = Wire.read();
-  (void)crc;
+  // 3rd byte is the CRC
 
   float temp = t;
   temp *= 175.72f;
@@ -116,28 +116,25 @@ float Adafruit_HTU21DF::readTemperature(void) {
  */
 float Adafruit_HTU21DF::readHumidity(void) {
   /* Prepare the I2C request. */
-  Wire.beginTransmission(HTU21DF_I2CADDR);
-  Wire.write(HTU21DF_READHUM);
-  Wire.endTransmission();
+  uint8_t cmd = HTU21DF_READHUM;
+  if (!i2c_dev->write(&cmd, 1)) {
+    return NAN;
+  }
 
   /* Wait a bit for the conversion to complete. */
   delay(50);
 
-  /* Read the conversion results. */
-  uint8_t count = Wire.requestFrom(HTU21DF_I2CADDR, 3);
-
-  /* Make sure we got 3 bytes back. */
-  if (count != 3) {
-    return 0.0f;
+  uint8_t buf[3];
+  if (!i2c_dev->read(buf, 3)) {
+    return NAN;
   }
 
   /* Read 16 bits of data, dropping the last two status bits. */
-  uint16_t h = Wire.read();
+  uint16_t h = buf[0];
   h <<= 8;
-  h |= Wire.read() & 0b11111100;
+  h |= buf[1] & 0b11111100;
 
-  uint8_t crc = Wire.read();
-  (void)crc;
+  // 3rd byte is the CRC
 
   float hum = h;
   hum *= 125.0f;

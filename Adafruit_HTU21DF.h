@@ -5,12 +5,8 @@
 #ifndef _ADAFRUIT_HTU21DF_H
 #define _ADAFRUIT_HTU21DF_H
 
-#if (ARDUINO >= 100)
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-#include "Wire.h"
+#include <Adafruit_BusIO_Register.h>
+#include <Adafruit_I2CDevice.h>
 
 /** Default I2C address for the HTU21D. */
 #define HTU21DF_I2CADDR (0x40)
@@ -37,13 +33,13 @@ class Adafruit_HTU21DF {
 public:
   Adafruit_HTU21DF();
 
-  boolean begin(void);
+  bool begin(TwoWire *theWire = &Wire);
   float readTemperature(void);
   float readHumidity(void);
   void reset(void);
 
 private:
-  boolean readData(void);
+  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
   float _last_humidity, _last_temp;
 };
 
